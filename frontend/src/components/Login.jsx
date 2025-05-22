@@ -7,11 +7,46 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+
+  const validateEmail = (email) => {
+    const regex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let valid = true;
+
+    if (!validateEmail(email)) {
+      setEmailError("Invalid email format.");
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters.");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (valid) {
+      navigate("/home");
+    }
+  };
+
   return (
     <div className="login-container">
       <Box
@@ -20,21 +55,37 @@ const Login = () => {
         sx={{
           m: 1,
           width: "25ch",
-          //   border: "2px solid black",
           padding: 3,
-          //   borderRadius: 4,
         }}
         noValidate
         autoComplete="off"
+        onSubmit={handleSubmit}
       >
         <Typography
           variant="h5"
-          sx={{ display: "flex", justifyContent: "center", color:"white" }}
+          sx={{ display: "flex", justifyContent: "center", color: "white" }}
         >
           Login
         </Typography>
-        <TextField id="standard-basic" label="Email" variant="standard" />
-        <TextField id="standard-basic" label="Password" variant="standard" />
+
+        <TextField
+          label="Email"
+          variant="standard"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={!!emailError}
+          helperText={emailError}
+        />
+        <TextField
+          label="Password"
+          variant="standard"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          error={!!passwordError}
+          helperText={passwordError}
+        />
+
         <Grid container spacing={0} sx={{ pt: 2, pb: 2 }}>
           <Grid item xs={6}>
             <FormControlLabel
@@ -52,12 +103,12 @@ const Login = () => {
             </Link>
           </Grid>
         </Grid>
+
         <Button
+          type="submit"
           variant="contained"
-            component={Link}
-            to="/home"
           sx={{
-            maxWidth:"75px",
+            maxWidth: "75px",
             mx: "auto",
             display: "block",
             backgroundImage:
@@ -74,7 +125,7 @@ const Login = () => {
         </Button>
 
         <Typography sx={{ fontSize: "0.9rem", pt: 2 }}>
-          Don't have an account? <Link>Signup</Link>
+          Don't have an account? <Link to="/signup">Signup</Link>
         </Typography>
       </Box>
     </div>

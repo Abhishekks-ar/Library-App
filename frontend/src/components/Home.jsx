@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -34,7 +35,8 @@ const Home = () => {
 
   return (
     <div>
-      <Typography variant="h5" sx={{mt:3,ml:2}}>
+        <Carousel />
+      <Typography variant="h5" sx={{ mt: 3, ml: 2, color: "white", display:"flex" ,justifyContent:"center" }}>
         Top Picks
       </Typography>
       <Grid
@@ -50,7 +52,9 @@ const Home = () => {
         {loading ? (
           Array.from(new Array(8)).map((_, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <Card sx={{ height: 230, width: 250, ml: 3.5 }}>
+              <Card
+                sx={{ height: 230, width: 240, m: 2, background: "#f9f7fa" }}
+              >
                 <Skeleton variant="rectangular" height={150} />
                 <CardContent>
                   <Skeleton width="80%" />
@@ -76,15 +80,21 @@ const Home = () => {
               >
                 <Card
                   sx={{
+                    backgroundImage: `url('/card2.jpg')`,
                     display: "flex",
                     flexDirection: "column",
                     border: "1px solid #ddd",
                     boxShadow: 2,
-                    height: 250,
+                    height: 230,
                     m: 2,
-                    width: 250,
+                    width: 240,
                     position: "relative",
                     overflow: "hidden",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Add transition for smoothness
+                    "&:hover": {
+                      transform: "scale(1.05)", // Pop-out scale
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.3)", // Stronger shadow
+                    },
                     "&:hover .hover-button": {
                       opacity: 1,
                     },
@@ -121,9 +131,22 @@ const Home = () => {
                         to={`/book/${book.id}`}
                         sx={{
                           color: "#fff",
+                          borderWidth: "2px",
                           borderColor: "#fff",
                           borderRadius: "20px",
                           backdropFilter: "blur(5px)",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            transform: "scale(1.05)",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                            backgroundColor: "rgba(255, 255, 255, 0.1)", // optional subtle hover
+                            borderColor: "#fff",
+                            color: "#fff", // keep text color white on hover
+                          },
+                          "&:active": {
+                            transform: "scale(0.97)",
+                            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+                          },
                         }}
                       >
                         Details
@@ -170,28 +193,7 @@ const Home = () => {
                         ? book.authors.map((author) => author.name).join(", ")
                         : "Unknown Author"}
                     </Typography>
-
-                    {/* <Button
-                      size="small"
-                      variant="contained"
-                      // fullWidth
-                      onClick={() => handleSelect(book)}
-                      sx={{
-                        mt: 0.5,
-                        fontSize: "0.75rem",
-                        padding: "4px 8px",
-                        alignSelf: "center",
-                      }}
-                    >
-                      Select
-                    </Button> */}
                   </CardContent>
-
-                  {/* <CardActions
-                    sx={{ padding: "8px", justifyContent: "space-between" }}
-                  >
-                    <Button onClick={() => addBook(book)}>Select</Button>
-                  </CardActions> */}
                 </Card>
               </Grid>
             ))}

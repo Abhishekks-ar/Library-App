@@ -1,5 +1,6 @@
 import { useBookContext } from "./BookContext";
 import { Button, List, ListItem, Paper, Typography } from "@mui/material";
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const Cart = () => {
   const { selectedBooks, removeBook, clearSelection } = useBookContext();
@@ -19,7 +20,7 @@ const Cart = () => {
         <ListItem
           secondaryAction={
             <Button color="error" onClick={() => removeBook(book.id)}>
-              Remove
+              Remove<RemoveCircleIcon />
             </Button>
           }
         >
