@@ -4,11 +4,14 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
 import "./Login.css";
 
 const Login = () => {
@@ -68,23 +71,42 @@ const Login = () => {
           Login
         </Typography>
 
-        <TextField
-          label="Email"
-          variant="standard"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          error={!!emailError}
-          helperText={emailError}
-        />
-        <TextField
-          label="Password"
-          variant="standard"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          error={!!passwordError}
-          helperText={passwordError}
-        />
+        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+          <TextField
+            label="Email"
+            variant="standard"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={!!emailError}
+            helperText={emailError}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <EmailIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+          <TextField
+            label="Password"
+            variant="standard"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            error={!!passwordError}
+            helperText={passwordError}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
 
         <Grid container spacing={0} sx={{ pt: 2, pb: 2 }}>
           <Grid item xs={6}>
@@ -121,7 +143,7 @@ const Login = () => {
             "&:hover": {
               backgroundColor: "#a366ff",
               transform: "scale(1.05)",
-              boxShadow: "0 4px 12px rgba(187, 134, 252, 0.4)",
+              boxShadow: "0 4px 12px #30204d",
             },
           }}
         >

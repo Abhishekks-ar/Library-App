@@ -101,6 +101,7 @@ const Cart = () => {
               disabled={selectedBooks.length === 0}
               sx={{
                 mt: 2,
+                mb:2,
                 background: "#30204d",
                 transition: "all 0.3s ease",
                 transformOrigin: "center",
