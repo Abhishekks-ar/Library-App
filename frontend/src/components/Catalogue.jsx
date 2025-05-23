@@ -184,7 +184,7 @@ const Catalogue = () => {
                     },
                   }}
                 >
-                  <Box sx={{ position: "relative", height: 150 }}>
+                  <Box sx={{ position: "relative", height: 150,mt:0.3 }}>
                     <CardMedia
                       component="img"
                       image={book.formats["image/jpeg"]}

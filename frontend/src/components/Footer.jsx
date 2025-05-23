@@ -17,7 +17,7 @@ const Footer = () => {
       <Divider sx={{ mb: 2, borderColor: "#555" }} />
 
       <Typography variant="body2" sx={{ mb: 1 }}>
-        © {new Date().getFullYear()} My Library App. All rights reserved.
+        © {new Date().getFullYear()} BookShelf. All rights reserved.
       </Typography>
     </Box>
   );

@@ -36,7 +36,7 @@ const Home = () => {
     axios
       .get("https://gutendex.com/books/?sort=popular")
       .then((res) => {
-        setBooks(res.data.results.slice(0, 8)); 
+        setBooks(res.data.results.slice(0, 8));
         setLoading(false);
       })
       .catch((err) => {
@@ -77,15 +77,22 @@ const Home = () => {
       <Typography
         variant="h5"
         sx={{
+          fontWeight:"bold",
           mt: 3,
           ml: 2,
           color: "white",
           display: "flex",
           justifyContent: "center",
+          transition: "transform 0.3s ease, color 0.3s ease",
+          "&:hover": {
+            transform: "scale(1.05)",
+            color: "#30204d", 
+          },
         }}
       >
         Top Picks
       </Typography>
+
       <Grid
         container
         spacing={2}
@@ -137,17 +144,17 @@ const Home = () => {
                     width: 240,
                     position: "relative",
                     overflow: "hidden",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease", 
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     "&:hover": {
-                      transform: "scale(1.05)", 
-                      boxShadow: "0 8px 20px rgba(0,0,0,0.3)", 
+                      transform: "scale(1.05)",
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
                     },
                     "&:hover .hover-button": {
                       opacity: 1,
                     },
                   }}
                 >
-                  <Box sx={{ position: "relative", height: 150 }}>
+                  <Box sx={{ position: "relative", height: 150,mt:1 }}>
                     <CardMedia
                       component="img"
                       image={book.formats["image/jpeg"]}
@@ -186,9 +193,9 @@ const Home = () => {
                           "&:hover": {
                             transform: "scale(1.05)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                            backgroundColor: "rgba(255, 255, 255, 0.1)", 
+                            backgroundColor: "rgba(255, 255, 255, 0.1)",
                             borderColor: "#fff",
-                            color: "#fff", 
+                            color: "#fff",
                           },
                           "&:active": {
                             transform: "scale(0.97)",
@@ -207,7 +214,7 @@ const Home = () => {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
-                      padding: 1, 
+                      padding: 1,
                     }}
                   >
                     <Tooltip title={book.title} arrow>
@@ -220,7 +227,7 @@ const Home = () => {
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           whiteSpace: "nowrap",
-                          cursor: "pointer", 
+                          cursor: "pointer",
                         }}
                       >
                         {book.title}
@@ -233,7 +240,7 @@ const Home = () => {
                       sx={{
                         overflow: "hidden",
                         textOverflow: "ellipsis",
-                        whiteSpace: "nowrap", 
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {book.authors.length > 0

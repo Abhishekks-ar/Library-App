@@ -16,6 +16,7 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
 const navItems = [
   { label: "Home", to: "/home", icon: <HomeIcon /> },
@@ -51,7 +52,7 @@ const Navbar = () => {
               "&:hover": { color: "#bb86fc" },
             }}
           >
-            Library App
+           <AutoStoriesIcon sx={{mb:1}}/> BookShelf
           </Typography>
 
           {isMobile ? (
