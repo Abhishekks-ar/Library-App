@@ -54,7 +54,7 @@ const Login = () => {
         component="form"
         sx={{
           m: 1,
-          width: "25ch",
+          width: "31ch",
           padding: 3,
         }}
         noValidate
@@ -108,16 +108,20 @@ const Login = () => {
           type="submit"
           variant="contained"
           sx={{
-            maxWidth: "75px",
+            maxWidth: "100px",
             mx: "auto",
             display: "block",
-            backgroundImage:
-              "linear-gradient(to right, rgb(23, 185, 28), #81C784)",
-            color: "#ffffff",
-            border: "none",
+            backgroundColor: "#30204d",
+            color: "#fff",
+            fontWeight: "bold",
+            letterSpacing: 1,
+            borderRadius: "4px",
+            textTransform: "none",
+            transition: "all 0.3s ease",
             "&:hover": {
-              backgroundImage:
-                "linear-gradient(to right, rgb(128, 244, 4), rgb(0, 0, 0))",
+              backgroundColor: "#a366ff",
+              transform: "scale(1.05)",
+              boxShadow: "0 4px 12px rgba(187, 134, 252, 0.4)",
             },
           }}
         >
@@ -125,7 +129,7 @@ const Login = () => {
         </Button>
 
         <Typography sx={{ fontSize: "0.9rem", pt: 2 }}>
-          Don't have an account? <Link to="/signup">Signup</Link>
+          Don't have an account? <Link to="/">Signup</Link>
         </Typography>
       </Box>
     </div>

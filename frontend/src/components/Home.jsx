@@ -13,18 +13,30 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Carousel from "./Carousel";
+import BookCarousel from "./BookCarousel";
+import { Typewriter } from "react-simple-typewriter";
+import { keyframes } from "@mui/system";
+
+const slideDn = keyframes`
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+`;
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch top picks — you can use a real category or filter later
     axios
       .get("https://gutendex.com/books/?sort=popular")
       .then((res) => {
-        setBooks(res.data.results.slice(0, 8)); // Limit to top 8
+        setBooks(res.data.results.slice(0, 8)); 
         setLoading(false);
       })
       .catch((err) => {
@@ -35,8 +47,43 @@ const Home = () => {
 
   return (
     <div>
-        <Carousel />
-      <Typography variant="h5" sx={{ mt: 3, ml: 2, color: "white", display:"flex" ,justifyContent:"center" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{
+          mt: 4,
+          mb: 2,
+          fontWeight: "bold",
+          color: "#4b2a6e",
+          animation: `${slideDn} 1.5s ease-out forwards`,
+        }}
+      >
+        Discover the World of Books
+      </Typography>
+      <Typography variant="h6" align="center" sx={{ mt: 2 }}>
+        <Typewriter
+          words={[
+            "Explore a curated collection of timeless books, ready to read anytime.",
+          ]}
+          loop={1}
+          cursor
+          cursorStyle="|"
+          typeSpeed={50}
+          deleteSpeed={20}
+          delaySpeed={1000}
+        />
+      </Typography>
+      <BookCarousel />
+      <Typography
+        variant="h5"
+        sx={{
+          mt: 3,
+          ml: 2,
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         Top Picks
       </Typography>
       <Grid
@@ -90,10 +137,10 @@ const Home = () => {
                     width: 240,
                     position: "relative",
                     overflow: "hidden",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Add transition for smoothness
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease", 
                     "&:hover": {
-                      transform: "scale(1.05)", // Pop-out scale
-                      boxShadow: "0 8px 20px rgba(0,0,0,0.3)", // Stronger shadow
+                      transform: "scale(1.05)", 
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.3)", 
                     },
                     "&:hover .hover-button": {
                       opacity: 1,
@@ -139,9 +186,9 @@ const Home = () => {
                           "&:hover": {
                             transform: "scale(1.05)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                            backgroundColor: "rgba(255, 255, 255, 0.1)", // optional subtle hover
+                            backgroundColor: "rgba(255, 255, 255, 0.1)", 
                             borderColor: "#fff",
-                            color: "#fff", // keep text color white on hover
+                            color: "#fff", 
                           },
                           "&:active": {
                             transform: "scale(0.97)",
@@ -160,7 +207,7 @@ const Home = () => {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
-                      padding: 1, // reduce padding
+                      padding: 1, 
                     }}
                   >
                     <Tooltip title={book.title} arrow>
@@ -173,7 +220,7 @@ const Home = () => {
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           whiteSpace: "nowrap",
-                          cursor: "pointer", // Optional: to indicate hoverable
+                          cursor: "pointer", 
                         }}
                       >
                         {book.title}
@@ -186,7 +233,7 @@ const Home = () => {
                       sx={{
                         overflow: "hidden",
                         textOverflow: "ellipsis",
-                        whiteSpace: "nowrap", // Ensures single line
+                        whiteSpace: "nowrap", 
                       }}
                     >
                       {book.authors.length > 0
@@ -200,6 +247,26 @@ const Home = () => {
           </Grid>
         )}
       </Grid>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          variant="contained"
+          component={Link}
+          to="/catalogue"
+          sx={{
+            background: "#30204d",
+            maxWidth: "300px",
+            mb: 3,
+            color: "white",
+            transition: "transform 0.3s ease, color 0.3s ease",
+            "&:hover": {
+              transform: "scale(1.05)",
+              color: "white",
+            },
+          }}
+        >
+          Browse Full Catalogue
+        </Button>
+      </Box>
     </div>
   );
 };

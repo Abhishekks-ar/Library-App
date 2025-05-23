@@ -1,4 +1,3 @@
-// src/context/BookContext.jsx
 import React, { createContext, useContext, useState } from "react";
 
 const BookContext = createContext();
@@ -17,38 +16,37 @@ const normalizeCategory = (rawShelf = "") => {
 export const BookProvider = ({ children }) => {
   const [selectedBooks, setSelectedBooks] = useState([]);
 
-const addBook = (book, selectedCategory) => {
-  const category = selectedCategory; // ✅ Trust the dropdown
-  console.log("Book category (from dropdown):", category);
+  const addBook = (book, selectedCategory) => {
+    const category = selectedCategory; //
+    console.log("Book category (from dropdown):", category);
 
-  // Check if already selected
-  if (selectedBooks.some((b) => b.id === book.id)) {
-    alert("This book is already selected.");
-    return;
-  }
+    // Check if already selected
+    if (selectedBooks.some((b) => b.id === book.id)) {
+      alert("This book is already selected.");
+      return;
+    }
 
-  // Check total limit
-  if (selectedBooks.length >= 5) {
-    alert("You can only select up to 5 books in total.");
-    return;
-  }
+    // Check total limit
+    if (selectedBooks.length >= 5) {
+      alert("You can only select up to 5 books in total.");
+      return;
+    }
 
-  // Check per-category limit
-  const booksInCategory = selectedBooks.filter(
-    (b) => b.selectedCategory === category
-  );
-  if (booksInCategory.length >= 3) {
-    alert(`You can only select up to 3 books from the '${category}' category.`);
-    return;
-  }
+    // Check per-category limit
+    const booksInCategory = selectedBooks.filter(
+      (b) => b.selectedCategory === category
+    );
+    if (booksInCategory.length >= 3) {
+      alert(
+        `You can only select up to 3 books from the '${category}' category.`
+      );
+      return;
+    }
 
-  // ✅ Add book, and tag it with selectedCategory
-  const bookWithCategory = { ...book, selectedCategory: category };
-  setSelectedBooks((prevBooks) => [...prevBooks, bookWithCategory]);
-};
-
-
-
+    //  Add book, and tag it with selectedCategory
+    const bookWithCategory = { ...book, selectedCategory: category };
+    setSelectedBooks((prevBooks) => [...prevBooks, bookWithCategory]);
+  };
 
   const removeBook = (id) => {
     setSelectedBooks(selectedBooks.filter((book) => book.id !== id));

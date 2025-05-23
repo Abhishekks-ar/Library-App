@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const Main = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Inject selectedCategory into the child component if it's a valid React element
   const enhancedChildren = React.isValidElement(children)
     ? React.cloneElement(children, { selectedCategory })
     : children;
@@ -16,6 +16,7 @@ const Main = ({ children }) => {
         onCategoryChange={setSelectedCategory}
       />
       {enhancedChildren}
+      <Footer />
     </div>
   );
 };

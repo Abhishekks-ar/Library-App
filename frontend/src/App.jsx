@@ -13,7 +13,7 @@ function App() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(to right,rgb(201, 196, 196),rgb(144, 149, 149))", // Customize this gradient
+          background: "linear-gradient(to right,rgb(210, 193, 235),rgb(102, 86, 132))", // Customize this gradient
         }}
       >
         <Routes>

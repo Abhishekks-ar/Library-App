@@ -14,6 +14,7 @@ import {
   Skeleton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -103,14 +104,14 @@ const BookDetails = () => {
           </Typography>
 
           {book.formats["text/html"] && (
-            <Typography variant="body2" sx={{ mt: 2 }}>
+            <Typography variant="body2" sx={{ mt: 2, }}>
               <Link
                 href={book.formats["text/html"]}
                 target="_blank"
                 rel="noopener noreferrer"
                 underline="hover"
               >
-                📖 Read Online
+                <MenuBookIcon sx={{pb:0.5}}/> Read Online
               </Link>
             </Typography>
           )}
@@ -122,18 +123,17 @@ const BookDetails = () => {
               onClick={() => navigate(-1)}
               startIcon={<ArrowBackIcon />}
               sx={{
-                color: "grey",
+                color: "#30204d",
                 borderWidth: "2px",
-                borderColor: "grey",
+                borderColor: "#30204d",
                 borderRadius: "20px",
                 // backdropFilter: "blur(5px)",
                 transition: "all 0.3s ease",
                 "&:hover": {
                   transform: "scale(1.05)",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                  backgroundColor: "rgba(21, 12, 12, 0.1)", // optional subtle hover
-                  borderColor: "grey",
-                  color: "black", // keep text color white on hover
+                  borderColor: "#30204d",
+                  color: "#30204d", 
                 },
                 "&:active": {
                   transform: "scale(0.97)",
